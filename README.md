@@ -1,6 +1,9 @@
 # AO-projekt
 
-# Required Libraries
--- easyocr
--- opencv
--- numpy
+# Required Libraries:
+easyocr
+----------------------------
+opencv
+----------------------------
+numpy
+----------------------------
