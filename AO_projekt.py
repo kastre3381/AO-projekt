@@ -3,6 +3,7 @@ from Detection import *
 import os
 from tkinter import *
 from tkinter import ttk
+from PIL import ImageTk, Image
 from tkinter import filedialog
 from threading import *
 
@@ -40,9 +41,16 @@ class GUI:
 		self.spacing.grid(column=0, row=1)
 		self.progressBar = ttk.Progressbar(self.spacing, orient='horizontal', length=800, mode='determinate')
 		self.progressBar.grid(column=0, row=0)
-	
+
+	def LoadAndRescaleImage(self, filepath : str) :
+		currentImage = Image.open(filepath)
+		h_scale = 480 / currentImage.height
+		w_scale = 800 / currentImage.width
+		scale = h_scale if h_scale < w_scale else w_scale
+		return currentImage.resize((int(currentImage.width * scale), int(currentImage.height * scale)))
+
 	def LoadImage(self, filepath : str):
-		self.image = PhotoImage(file=filepath, master=self.root)
+		self.image = ImageTk.PhotoImage(self.LoadAndRescaleImage(filepath), master=self.root)
 		self.loaded_image.configure(image=self.image)
 		self.loaded_image.grid(column=0, row=0)
 		self.loaded_image.grid_columnconfigure(0, weight=1)
@@ -62,7 +70,6 @@ class GUI:
 		self.PlateToText(filename)
 		self.recognised_number.configure(text = self.recognisedNumberText)
 		self.recognised_number.grid(column=1, row=1)
-		# self.progressBar.stop()
 
 	def browseFiles(self):
 		filename = filedialog.askopenfilename(initialdir = os.getcwd(),
