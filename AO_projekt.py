@@ -32,7 +32,7 @@ class GUI:
 		self.menuframe.grid_columnconfigure(1, weight=1)
 		self.menuframe.grid_propagate(False)
 
-		Button(self.menuframe, text="Load image", height=7, command=self.browseFiles).grid(column=0, row=0, rowspan = 2)
+		Button(self.menuframe, text="Load image", pady=35, command=self.browseFiles).grid(column=0, row=0, rowspan = 2)
 		ttk.Label(self.menuframe, text='Recognised plate number:').grid(column=1, row=0)
 		self.recognised_number = ttk.Label(self.menuframe)
 
