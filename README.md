@@ -21,7 +21,7 @@ This application is designed to process images and extract license plate as a te
 ### Application GUI:
 ![app_gui](./docs/license_place_recognition_app_screen.png)
 
-# How to launch an application
+## How to launch an application
 Please follow this steps to run an app:
 1. To run this application you need `python3`(and `pip` to easily install libraries) installed.  
 If you do not have python3 installed yet please follow this: <a href="https://wiki.python.org/moin/BeginnersGuide/Download" target="_blank">installation instructions</a>
@@ -60,11 +60,12 @@ To document our investigation, here are scrach files which were used initialy in
  Description of methods which are used to process image is available in the next point.
  3. Using OpenCV's contour detection objects are extracted from the image. 
  4. Objects are processed and saved to set of unique elements: only objects which are parents are preserved.  
- *Note: if we are looking for license plate then we are sure that each license plate constins child objects in the form of  characters.* 
+ *Note: if we are looking for license plate then we are sure that each license plate constains child objects in the form of  characters.* 
  5. We are iterating over list of parents elements. If element has exactly 4 vertices then:
     - mask to crop the image is created
     - mask is applied to image and as a result we can save cropped image containing only possible license plate to file
- 6. Iterating over each image saved in the previous point we are trying to detect license plate text. If license plate text is detected then program print it and stop processing further images.
+ 6. Images which passes filtering metioned in previous points are saved to [cropped_results](./cropped_results/) directory. 
+ 7. Iterating over each image saved in the previous point we are trying to detect license plate text. If license plate text is detected then program print it and stop processing further images.
  When program processed image using all 3 methods and didn't detect license plate number then message that license plate couldn't been found is displayed.
 
 ## Methods used for image transformation
