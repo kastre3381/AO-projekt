@@ -62,7 +62,7 @@ class GUI:
 		if len(self.recognisedNumberText) == 0 :
 			self.recognisedNumberText = PlateDetection(filename, Method3, self.progressBar)
 		if len(self.recognisedNumberText) == 0 :
-			self.recognisedNumberText = "nie znaleziono"
+			self.recognisedNumberText = "not found"
 		self.progressBar['value'] = 100
 
 

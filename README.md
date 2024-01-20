@@ -5,7 +5,7 @@ This application is designed to process images and extract license plate as a te
 ## App Functionalities
 
 ### Image Upload:
-  - Users can upload an image by clicking on the designated upload button.
+  - Users can upload an image by clicking on the designated "Load Image" button.
   - A file dialog will prompt the user to select an image file.
   - User can choose only .png files
 
@@ -21,21 +21,37 @@ This application is designed to process images and extract license plate as a te
 ### Application GUI:
 ![app_gui](./docs/license_place_recognition_app_screen.png)
 
-## Libraries used:
-1. **cv2: OpenCV** is used in for contour detection, image filtering and binarazing.
+# How to launch an application
+Please follow this steps to run an app:
+1. To run this application you need `python3`(and `pip` to easily install libraries) installed.  
+If you do not have python3 installed yet please follow this: <a href="https://wiki.python.org/moin/BeginnersGuide/Download" target="_blank">installation instructions</a>
+2. Ensure that you have all required libraries installed.  
+You can install all of required libraries using `pip(pip3)`.
+3. Run program with:
+```
+python3 AO_projekt.py
+```
+3. That's all!
 
-2. **numpy: Numerical Python** is used in our project for handling large arrays and its processing.
+## Required libraries:
+1. **cv2: OpenCV** is used in for contour detection, image filtering and binarazing.  
+About: <a href="https://opencv.org/releases/" target="_blank">documentation and installation instructions</a>
 
-3. **easyocr: EasyOCR** is used in our project for optical character recognition (detecting license plate numbers).
+2. **numpy: Numerical Python** is used in our project for handling large arrays and its processing.  
+About: <a href="https://numpy.org/" target="_blank">documentation and installation instructions</a>
 
-4. **tkinter: Tkinter** is used in our project to create the graphical user interface (GUI).
+3. **easyocr: EasyOCR** is used in our project for optical character recognition (detecting license plate numbers).  
+About: <a href="https://pypi.org/project/easyocr/" target="_blank">documentation and installation instructions</a>
 
-5. **PIL: Python Imaging Library (Pillow)** is used for image uploading and processing.
+4. **tkinter: Tkinter** is used in our project to create the graphical user interface (GUI).  
+About: <a href="https://docs.python.org/3/library/tkinter.html" target="_blank">documentation and installation instructions</a>
+5. **PIL: Python Imaging Library (Pillow)** is used for image uploading and processing.  
+About: <a href="https://pypi.org/project/pillow/" target="_blank">documentation and installation instructions</a>
 
 
 ## Extracting license plate number
 **Initial note:** our first attempt was to train and use model with **pytesseract** library. Althought after spending a lot of time without any relevant result we have decided to take another approach: extracting license plate subimages from orginal photo using manual image analysis techniques and then detecting text using **easyocr**. 
-To document our investigation, here are scrach files which were used initialy in our model training attempts: [plate_number_detection_initial](./docs/plate_number_detection_initial_attempts/)
+To document our investigation, here are scrach files which were used initialy in our model training attempts: [plate_number_detection_initial_attempts](./docs/plate_number_detection_initial_attempts/)
 
 ### Current implementation
  1. User upload image and it is saved as Python Imaging Library Image then converted to grayscale
