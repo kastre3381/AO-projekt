@@ -73,6 +73,7 @@ As it was metioned in the previous point there are 3 methods which try to prepar
 1. Method 1(most commonly used) - it consist of 3 steps:
     - **bilateral filter:** it is non-linear, edge-preserving, and noise reducing smoothing filter. It particulary smooth image while preserving edges and as a effect removes noise from the photo.
     - **threshold using Otsu's method with tozero:** the image is converted to monochrome using threshold value got from Otsu's method and TOZERO technique.
+    - **deterministic threshold:** when Otsu method fails the optimal threshold is found by increasing the threshold value by 50.
     - **adaptiveThreshold** image is converted to binary and inverted using filter which adjust thresholding to neighbourhood of the pixels
 2. Method 2:
     - **bilateral filter:** it is non-linear, edge-preserving, and noise reducing smoothing filter. It particulary smooth image while preserving edges and as a effect removes noise from the photo.

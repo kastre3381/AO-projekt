@@ -1,7 +1,5 @@
 import cv2
-import matplotlib.pyplot as plt
 import numpy as np
-import imutils
 import easyocr
 
 def TextDetection(platepath : str) :
@@ -33,24 +31,27 @@ def ObjectFinder(bin_img, real_img) :
 			counter += 1
 	return path_list
 
-def Method1(gray_img) :
+def Method1(gray_img, th) :
 	gray_img_filtered = cv2.bilateralFilter(gray_img, -1, 20, 20)
-	threshold_from_otsu, bin_tozero_img = cv2.threshold(gray_img_filtered, 0, 255, cv2.THRESH_TOZERO + cv2.THRESH_OTSU)
+	if th != None:
+		threshold_from_otsu, bin_tozero_img = cv2.threshold(gray_img_filtered, th, 255, cv2.THRESH_TOZERO)
+	else :
+		threshold_from_otsu, bin_tozero_img = cv2.threshold(gray_img_filtered, 0, 255, cv2.THRESH_TOZERO + cv2.THRESH_OTSU)
 	return cv2.adaptiveThreshold(bin_tozero_img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 3, 4)
 
-def Method2(gray_img) :
+def Method2(gray_img, th) :
 	gray_img_filtered = cv2.bilateralFilter(gray_img, -1, 20, 20)
 	threshold_from_otsu, bin_tozero_img = cv2.threshold(gray_img_filtered, 0, 255, cv2.THRESH_TOZERO + cv2.THRESH_OTSU)
 	return cv2.Canny(gray_img_filtered, threshold_from_otsu / 2, threshold_from_otsu)
 
-def Method3(gray_img) :
+def Method3(gray_img, th) :
 	gray_img_filtered = cv2.bilateralFilter(gray_img, -1, 20, 20)
 	return cv2.Laplacian(gray_img_filtered, -1)
 
-def PlateDetection(imagepath : str, Method, progress) :
+def PlateDetection(imagepath : str, Method, progress, th = None) :
 	img = cv2.imread(imagepath)
 	progress['value'] = 10
-	result = Method(cv2.cvtColor(img, cv2.COLOR_RGB2GRAY))
+	result = Method(cv2.cvtColor(img, cv2.COLOR_RGB2GRAY), th)
 	path_list = ObjectFinder(result, img)
 	progress['value'] = 40
 	for path in path_list :
