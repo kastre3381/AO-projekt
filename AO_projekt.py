@@ -58,11 +58,17 @@ class GUI:
 	def PlateToText(self, filename : str):
 		self.recognisedNumberText = PlateDetection(filename, Method1, self.progressBar)
 		if len(self.recognisedNumberText) == 0 :
+			for th in range(5, 256, 50)	:
+				self.recognisedNumberText = PlateDetection(filename, Method1, self.progressBar, th)
+				if len(self.recognisedNumberText) != 0 :
+					break
+		if len(self.recognisedNumberText) == 0 :
 			self.recognisedNumberText = PlateDetection(filename, Method2, self.progressBar)
 		if len(self.recognisedNumberText) == 0 :
 			self.recognisedNumberText = PlateDetection(filename, Method3, self.progressBar)
 		if len(self.recognisedNumberText) == 0 :
 			self.recognisedNumberText = "not found"
+		self.recognisedNumberText = self.recognisedNumberText.upper()
 		self.progressBar['value'] = 100
 
 
