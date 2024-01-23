@@ -98,7 +98,7 @@ App succesfully detect license plates numers for car photos which meets all of t
  ## Failed detecion
  We have identified some cases when detection algorithm do not work properly: 
  - when license plates edges are indistinguishable from the color of the car itself
- - when contrast beetwen license plate background color and text is not big enought
+ - when contrast beetwen license plate background color and text is not big enough
  - when photo was taken not exactly frontally
  - in some cases where there are other characters on the photo (like car brand name)
 
